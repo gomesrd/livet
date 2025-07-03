@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: "postgres:15"
+    container_name: "postgres_livet"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_15:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: livet
+      POSTGRES_PASSWORD: livet
+      POSTGRES_DB: livet
+
+volumes:
+  postgres_data_15:
