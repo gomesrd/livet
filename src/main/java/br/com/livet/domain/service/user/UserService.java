@@ -24,7 +24,7 @@ public class UserService implements UserServicePort {
     public User update(UUID id, User user) {
         User existing = userRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 
-        existing.setNome(user.getNome());
+        existing.setFirstName(user.getFirstName());
 
         return userRepositoryPort.save(existing);
     }
