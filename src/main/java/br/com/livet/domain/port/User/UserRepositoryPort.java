@@ -1,5 +1,6 @@
 package br.com.livet.domain.port.User;
 
+import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.infrastructure.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 @Service
 public interface UserRepositoryPort {
-    User save(User user);
+    User save(CreateUserRequest user);
     void deleteById(UUID id);
     Optional<User> findById(UUID id);
     List<User> findAll();

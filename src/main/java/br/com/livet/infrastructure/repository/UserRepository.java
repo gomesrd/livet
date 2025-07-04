@@ -1,5 +1,6 @@
 package br.com.livet.infrastructure.repository;
 
+import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.User.UserRepositoryPort;
 import br.com.livet.infrastructure.entity.User;
 
@@ -18,9 +19,15 @@ public class UserRepository implements UserRepositoryPort {
     private final JpaUserRepository jpaUserRepository;
 
     @Override
-    public User save(User user) {
-        return jpaUserRepository.save(user);
+    public User save(CreateUserRequest user) {
+        return jpaUserRepository.save(
+                User.builder()
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .build()
+        );
     }
+
 
     @Override
     public void deleteById(UUID id) {

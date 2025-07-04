@@ -1,5 +1,6 @@
 package br.com.livet.domain.service.user;
 
+import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.User.UserRepositoryPort;
 import br.com.livet.domain.port.User.UserServicePort;
 import br.com.livet.infrastructure.entity.User;
@@ -16,7 +17,7 @@ public class UserService implements UserServicePort {
     private final UserRepositoryPort userRepositoryPort;
 
     @Override
-    public User create(User user) {
+    public User create(CreateUserRequest user) {
         return userRepositoryPort.save(user);
     }
 
@@ -26,7 +27,12 @@ public class UserService implements UserServicePort {
 
         existing.setFirstName(user.getFirstName());
 
-        return userRepositoryPort.save(existing);
+        return userRepositoryPort.save(
+                CreateUserRequest.builder()
+                        .firstName(existing.getFirstName())
+                        .lastName(existing.getLastName())
+                        .build()
+        );
     }
 
     @Override

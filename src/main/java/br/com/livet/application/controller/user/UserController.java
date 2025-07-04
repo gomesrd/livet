@@ -1,5 +1,6 @@
 package br.com.livet.application.controller.user;
 
+import br.com.livet.domain.model.user.CreateUserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserServicePort userService;
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user) {
+    public ResponseEntity<User> create(@RequestBody CreateUserRequest user) {
         return ResponseEntity.ok(userService.create(user));
     }
 
