@@ -49,4 +49,10 @@ public class UserService implements UserServicePort {
     public List<User> findAll() {
         return userRepositoryPort.findAll();
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepositoryPort.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
 }

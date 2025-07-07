@@ -3,30 +3,29 @@ package br.com.livet.infrastructure.configuration;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.io.FileInputStream;
 import java.io.IOException;
+import com.google.firebase.auth.FirebaseAuth;
+import java.io.InputStream;
 
 @Configuration
 public class FirebaseConfiguration {
 
-    @PostConstruct
-    public void initialize() {
-        try {
-            FileInputStream serviceAccount = new FileInputStream("src/main/resources/firebase-service-account.json");
+    @Bean
+    public FirebaseAuth firebaseAuth() throws IOException {
+        if (FirebaseApp.getApps().isEmpty()) {
+            // Caminho do seu arquivo de chave privada do Firebase
+            InputStream serviceAccount = getClass().getResourceAsStream("/firebase-service-account.json");
 
+            assert serviceAccount != null;
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .build();
 
-            if (FirebaseApp.getApps().isEmpty()) {
-                FirebaseApp.initializeApp(options);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            FirebaseApp.initializeApp(options);
         }
+
+        return FirebaseAuth.getInstance();
     }
 }

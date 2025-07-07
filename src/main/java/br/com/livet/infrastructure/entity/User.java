@@ -39,6 +39,15 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
+    @Column(name="role", nullable = false, length = 50)
+    private String role;
+
+    @Column(name="external_id", nullable = false, unique = true, length = 255)
+    private String externalId;
+
+    @Column(name = "email", nullable = false, unique = true, length = 255)
+    private String email;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

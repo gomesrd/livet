@@ -19,4 +19,6 @@ public interface UserServicePort {
     User findById(UUID id);
 
     List<User> findAll();
+
+    User findByEmail(String email);
 }

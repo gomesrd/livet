@@ -43,4 +43,9 @@ public class UserRepository implements UserRepositoryPort {
     public List<User> findAll() {
         return jpaUserRepository.findAll();
     }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return jpaUserRepository.findByEmail(email);
+    }
 }

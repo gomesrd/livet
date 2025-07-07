@@ -36,6 +36,6 @@ spring:
     show-sql: true
 
 firebase:
-  authenticationKey:
+  authenticationKey: AIzaSyDwejFu9lPxxXLaY2N1Pbka1OXDlkBdkMU
   authenticationUrl: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebase.authenticationKey}
   refreshTokenUrl: https://securetoken.googleapis.com/v1/token?key=${firebase.authenticationKey}
