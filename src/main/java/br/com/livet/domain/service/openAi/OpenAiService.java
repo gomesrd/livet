@@ -1,6 +1,5 @@
 package br.com.livet.domain.service.openAi;
 
-import com.openai.models.ChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,4 @@ public class OpenAiService {
                 .call()
                 .chatResponse();
     }
-}
-
-
 }
