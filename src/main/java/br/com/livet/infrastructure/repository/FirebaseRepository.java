@@ -2,11 +2,15 @@ package br.com.livet.infrastructure.repository;
 
 import br.com.livet.domain.model.auth.AuthLoginRequest;
 import br.com.livet.domain.model.auth.AuthLoginResponse;
+import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.Firebase.FirebaseRepositoryPort;
 import br.com.livet.infrastructure.properties.FirebaseProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,6 +21,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Component
 
@@ -24,12 +29,14 @@ public class FirebaseRepository implements FirebaseRepositoryPort {
     private final OkHttpClient okHttpClient;
     private final ObjectMapper objectMapper;
     private final FirebaseProperties firebaseProperties;
+    private final FirebaseAuth firebaseAuth;
 
 
-    public FirebaseRepository(OkHttpClient okHttpClient, ObjectMapper objectMapper, FirebaseProperties firebaseProperties) {
+    public FirebaseRepository(OkHttpClient okHttpClient, ObjectMapper objectMapper, FirebaseProperties firebaseProperties, FirebaseAuth firebaseAuth) {
         this.okHttpClient = okHttpClient;
         this.objectMapper = objectMapper;
         this.firebaseProperties = firebaseProperties;
+        this.firebaseAuth = firebaseAuth;
     }
 
     @Override
@@ -79,7 +86,27 @@ public class FirebaseRepository implements FirebaseRepositoryPort {
     }
 
     @Override
-    public void createUser() {
-        // Implement user creation logic here
+    public UserRecord createUser(CreateUserRequest user) {
+        try {
+            UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                    .setEmail(user.getEmail())
+                    .setPassword(user.getPassword())
+                    .setDisplayName(user.getFirstName());
+
+            return firebaseAuth.createUser(request);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating user in Firebase: " + e.getMessage(), e);
+        }
     }
+
+    @Override
+    public Optional<UserRecord> getUserByEmail(String email) {
+        try {
+            return Optional.ofNullable(firebaseAuth.getUserByEmail(email));
+        } catch (FirebaseAuthException e) {
+            // logar ou tratar
+            return Optional.empty();
+        }
+    }
+
 }

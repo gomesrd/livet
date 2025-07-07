@@ -3,6 +3,7 @@ package br.com.livet.domain.service.user;
 import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.User.UserRepositoryPort;
 import br.com.livet.domain.port.User.UserServicePort;
+import br.com.livet.domain.service.auth.AuthService;
 import br.com.livet.infrastructure.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,12 @@ import java.util.UUID;
 public class UserService implements UserServicePort {
 
     private final UserRepositoryPort userRepositoryPort;
+    private final AuthService authService;
 
     @Override
     public User create(CreateUserRequest user) {
-        return userRepositoryPort.save(user);
+        String firebaseUid = authService.createUser(user);
+        return userRepositoryPort.save(user, firebaseUid);
     }
 
     @Override
@@ -27,7 +30,7 @@ public class UserService implements UserServicePort {
 
         existing.setFirstName(user.getFirstName());
 
-        return userRepositoryPort.save(
+        return userRepositoryPort.update(
                 CreateUserRequest.builder()
                         .firstName(existing.getFirstName())
                         .lastName(existing.getLastName())

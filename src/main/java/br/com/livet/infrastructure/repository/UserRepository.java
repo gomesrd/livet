@@ -19,7 +19,20 @@ public class UserRepository implements UserRepositoryPort {
     private final JpaUserRepository jpaUserRepository;
 
     @Override
-    public User save(CreateUserRequest user) {
+    public User save(CreateUserRequest user, String externalId) {
+        return jpaUserRepository.save(
+                User.builder()
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .email(user.getEmail())
+                        .externalId(externalId)
+                        .build()
+        );
+    }
+
+
+    @Override
+    public User update(CreateUserRequest user) {
         return jpaUserRepository.save(
                 User.builder()
                         .firstName(user.getFirstName())
@@ -27,7 +40,6 @@ public class UserRepository implements UserRepositoryPort {
                         .build()
         );
     }
-
 
     @Override
     public void deleteById(UUID id) {

@@ -10,7 +10,8 @@ import java.util.UUID;
 
 @Service
 public interface UserRepositoryPort {
-    User save(CreateUserRequest user);
+    User save(CreateUserRequest user, String externalId);
+    User update(CreateUserRequest user);
     void deleteById(UUID id);
     Optional<User> findById(UUID id);
     List<User> findAll();

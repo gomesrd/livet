@@ -2,9 +2,13 @@ package br.com.livet.domain.service.auth;
 
 import br.com.livet.domain.model.auth.AuthLoginRequest;
 import br.com.livet.domain.model.auth.AuthLoginResponse;
+import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.Firebase.FirebaseRepositoryPort;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.firebase.auth.UserRecord;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -18,9 +22,12 @@ public class AuthService {
         return firebaseRepositoryPort.login(authLoginRequest);
     }
 
-    public String register(String username, String password) {
-        // Implement registration logic here
-        System.out.println("Registration attempt for user: " + username);
-        return "Registration successful for user: " + username;
+    public String createUser(CreateUserRequest user) {
+        Optional<UserRecord> userFirebase = firebaseRepositoryPort.getUserByEmail(user.getEmail());
+
+        if (userFirebase.isPresent()) {
+            throw new RuntimeException("User already exists with email: " + user.getEmail());
+        }
+        return firebaseRepositoryPort.createUser(user).getUid();
     }
 }
