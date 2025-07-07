@@ -53,10 +53,8 @@ public class FirebaseFilter extends OncePerRequestFilter {
                 if (token != null) {
                     UserRecord user = firebaseAuth.getUser(token.getUid());
 
-                    System.out.println("Token Firebase: " + user.isDisabled());
                     if (!user.isDisabled()) { // TODO: verificar e-mail se necessário
                         User userPrincipal = getUser(user);
-                        System.out.println("Usuário autenticado: " + userPrincipal);
 
                         if (userPrincipal != null) {
                             UsernamePasswordAuthenticationToken authentication = SecurityUtils.createAuthenticationToken(userPrincipal, token);

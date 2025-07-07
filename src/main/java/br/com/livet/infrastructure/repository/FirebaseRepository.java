@@ -55,7 +55,6 @@ public class FirebaseRepository implements FirebaseRepositoryPort {
 
             if (response.isSuccessful()) {
                 JsonNode bodyTree = objectMapper.readTree(responseBody);
-                System.out.println(bodyTree.toString());
                 String idToken = bodyTree.hasNonNull("idToken") ? bodyTree.get("idToken").asText() : null;
                 String refreshToken = bodyTree.hasNonNull("refreshToken") ? bodyTree.get("refreshToken").asText() : null;
                 String expiresIn = bodyTree.hasNonNull("expiresIn") ? bodyTree.get("expiresIn").asText() : null;

@@ -1,7 +1,10 @@
 package br.com.livet.application.controller.user;
 
 import br.com.livet.domain.model.user.CreateUserRequest;
+import br.com.livet.domain.service.openAi.OpenAiService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Any;
+import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +26,10 @@ import java.util.UUID;
 public class UserController {
 
     private final UserServicePort userService;
+    private final OpenAiService openAiService;
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody CreateUserRequest user){
+    public ResponseEntity<User> create(@RequestBody CreateUserRequest user) {
         return ResponseEntity.ok(userService.create(user));
     }
 
@@ -48,5 +52,10 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.findAll());
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ChatResponse> search() {
+        return ResponseEntity.ok(openAiService.getPromptResponse());
     }
 }
