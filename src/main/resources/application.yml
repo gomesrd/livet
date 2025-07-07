@@ -35,3 +35,7 @@ spring:
       ddl-auto: update
     show-sql: true
 
+firebase:
+  authenticationKey:
+  authenticationUrl: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebase.authenticationKey}
+  refreshTokenUrl: https://securetoken.googleapis.com/v1/token?key=${firebase.authenticationKey}

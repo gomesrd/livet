@@ -1,11 +1,13 @@
 package br.com.livet.application.controller.auth;
 
+import br.com.livet.domain.model.auth.AuthLoginRequest;
+import br.com.livet.domain.model.auth.AuthLoginResponse;
+import br.com.livet.domain.service.auth.AuthService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.ResponseEntity.status;
 
@@ -14,11 +16,13 @@ import static org.springframework.http.ResponseEntity.status;
 @RequiredArgsConstructor
 public class AuthController {
 
+    private final AuthService authService;
+
     @PostMapping("/login")
-    public ResponseEntity<String> login() {
-        // Implement login logic here
-        System.out.println("Login attempt for user: ");
-        return status(OK).body("Login successful");
+    public ResponseEntity<AuthLoginResponse> login(
+            @RequestBody AuthLoginRequest authLoginRequest
+    ) throws JsonProcessingException {
+        return status(OK).body(authService.login(authLoginRequest));
     }
 
     @PostMapping("/register")
