@@ -1,4 +1,4 @@
-package br.com.livet.domain.service.user;
+package br.com.livet.domain.service.PatientClinicalRecord;
 
 import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.user.UserRepositoryPort;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserServicePort {
+public class PatientClinicalRecordService implements UserServicePort {
 
     private final UserRepositoryPort userRepositoryPort;
     private final AuthService authService;

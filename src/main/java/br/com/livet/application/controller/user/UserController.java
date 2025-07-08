@@ -3,7 +3,6 @@ package br.com.livet.application.controller.user;
 import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.service.openAi.OpenAiService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Any;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import br.com.livet.domain.port.User.UserServicePort;
+import br.com.livet.domain.port.user.UserServicePort;
 import br.com.livet.infrastructure.entity.User;
 
 import java.util.List;

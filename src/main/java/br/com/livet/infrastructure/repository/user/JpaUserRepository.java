@@ -1,4 +1,4 @@
-package br.com.livet.infrastructure.repository;
+package br.com.livet.infrastructure.repository.user;
 
 import br.com.livet.infrastructure.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -3,7 +3,7 @@ package br.com.livet.domain.service.auth;
 import br.com.livet.domain.model.auth.AuthLoginRequest;
 import br.com.livet.domain.model.auth.AuthLoginResponse;
 import br.com.livet.domain.model.user.CreateUserRequest;
-import br.com.livet.domain.port.Firebase.FirebaseRepositoryPort;
+import br.com.livet.domain.port.firebase.FirebaseRepositoryPort;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.auth.UserRecord;
 import org.springframework.stereotype.Service;

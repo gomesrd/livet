@@ -1,7 +1,7 @@
-package br.com.livet.infrastructure.repository;
+package br.com.livet.infrastructure.repository.user;
 
 import br.com.livet.domain.model.user.CreateUserRequest;
-import br.com.livet.domain.port.User.UserRepositoryPort;
+import br.com.livet.domain.port.user.UserRepositoryPort;
 import br.com.livet.infrastructure.entity.User;
 
 import java.util.Optional;

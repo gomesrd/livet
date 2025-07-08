@@ -1,4 +1,4 @@
-package br.com.livet.domain.port.Firebase;
+package br.com.livet.domain.port.firebase;
 
 import br.com.livet.domain.model.auth.AuthLoginRequest;
 import br.com.livet.domain.model.auth.AuthLoginResponse;

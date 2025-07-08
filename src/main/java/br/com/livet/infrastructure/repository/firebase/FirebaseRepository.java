@@ -1,9 +1,9 @@
-package br.com.livet.infrastructure.repository;
+package br.com.livet.infrastructure.repository.firebase;
 
 import br.com.livet.domain.model.auth.AuthLoginRequest;
 import br.com.livet.domain.model.auth.AuthLoginResponse;
 import br.com.livet.domain.model.user.CreateUserRequest;
-import br.com.livet.domain.port.Firebase.FirebaseRepositoryPort;
+import br.com.livet.domain.port.firebase.FirebaseRepositoryPort;
 import br.com.livet.infrastructure.properties.FirebaseProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

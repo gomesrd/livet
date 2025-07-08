@@ -1,4 +1,4 @@
-package br.com.livet.domain.port.User;
+package br.com.livet.domain.port.user;
 
 import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.infrastructure.entity.User;
