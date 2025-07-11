@@ -34,8 +34,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: https://api.openai.com/v1
+      chat:
+        options:
+          model: gpt-4.1-mini-2025-04-14
 
 firebase:
-  authenticationKey:
+  authenticationKey: ${FIREBASE_AUTHENTICATION_KEY}
   authenticationUrl: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebase.authenticationKey}
   refreshTokenUrl: https://securetoken.googleapis.com/v1/token?key=${firebase.authenticationKey}
