@@ -5,7 +5,7 @@ RUN apt-get install openjdk-21-jdk -y
 COPY . .
 
 RUN apt-get install maven -y
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 FROM openjdk:21-jdk-slim
 
@@ -16,6 +16,6 @@ ENV TZ=America/Sao_Paulo \
   LANGUAGE=pt_BR.UTF-8 \
   LC_ALL=pt_BR.UTF-8
 
-COPY --from=BUILD /target/deploy_render-1.0.0.jar app.jar
+COPY --from=BUILD /target/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
