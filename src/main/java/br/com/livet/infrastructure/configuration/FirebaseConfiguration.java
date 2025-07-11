@@ -17,8 +17,7 @@ public class FirebaseConfiguration {
     @Bean
     public FirebaseAuth firebaseAuth() throws IOException {
         if (FirebaseApp.getApps().isEmpty()) {
-            // Caminho absoluto do arquivo secreto no Render
-            String secretPath = "/etc/secrets/firebase-service-account.json";
+            String secretPath = System.getenv().getOrDefault("FIREBASE_SECRET_PATH", "/etc/secrets/firebase-service-account.json");
             try (InputStream serviceAccount = new FileInputStream(secretPath)) {
                 FirebaseOptions options = FirebaseOptions.builder()
                         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
