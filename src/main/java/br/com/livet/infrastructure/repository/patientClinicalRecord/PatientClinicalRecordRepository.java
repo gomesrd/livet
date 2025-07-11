@@ -18,7 +18,7 @@ public class PatientClinicalRecordRepository implements PatientClinicalRecordRep
     private final JpaPatientClinicalRecordRepository jpaPatientClinicalRecordRepository;
 
     @Override
-    public PatientClinicalRecord save(CreatePatientClinicalRecordRequest patientClinicalRecord, String externalId) {
+    public PatientClinicalRecord save(CreatePatientClinicalRecordRequest patientClinicalRecord) {
         return jpaPatientClinicalRecordRepository.save(
                 PatientClinicalRecord.builder()
                         .userId(patientClinicalRecord.getUserId())
@@ -45,7 +45,7 @@ public class PatientClinicalRecordRepository implements PatientClinicalRecordRep
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void delete(UUID id) {
         jpaPatientClinicalRecordRepository.deleteById(id);
     }
 

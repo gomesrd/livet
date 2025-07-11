@@ -1,10 +1,9 @@
 package br.com.livet.domain.service.PatientClinicalRecord;
 
-import br.com.livet.domain.model.user.CreateUserRequest;
-import br.com.livet.domain.port.user.UserRepositoryPort;
-import br.com.livet.domain.port.user.UserServicePort;
-import br.com.livet.domain.service.auth.AuthService;
-import br.com.livet.infrastructure.entity.User;
+import br.com.livet.domain.model.patientClinicalRecord.CreatePatientClinicalRecordRequest;
+import br.com.livet.domain.port.patientClinicalRecord.PatientClinicalRecordRepositoryPort;
+import br.com.livet.domain.port.patientClinicalRecord.PatientClinicalRecordServicePort;
+import br.com.livet.infrastructure.entity.PatientClinicalRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,49 +12,36 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class PatientClinicalRecordService implements UserServicePort {
-
-    private final UserRepositoryPort userRepositoryPort;
-    private final AuthService authService;
+public class PatientClinicalRecordService implements PatientClinicalRecordServicePort {
+    private final PatientClinicalRecordRepositoryPort patientClinicalRecordRepositoryPort;
 
     @Override
-    public User create(CreateUserRequest user) {
-        String firebaseUid = authService.createUser(user);
-        return userRepositoryPort.save(user, firebaseUid);
+    public PatientClinicalRecord create(CreatePatientClinicalRecordRequest createPatientClinicalRecordRequest) {
+        // Implementation for creating a patient clinical record
+        return patientClinicalRecordRepositoryPort.save(createPatientClinicalRecordRequest);
     }
 
     @Override
-    public User update(UUID id, User user) {
-        User existing = userRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-
-        existing.setFirstName(user.getFirstName());
-
-        return userRepositoryPort.update(
-                CreateUserRequest.builder()
-                        .firstName(existing.getFirstName())
-                        .lastName(existing.getLastName())
-                        .build()
-        );
+    public PatientClinicalRecord update(UUID id, CreatePatientClinicalRecordRequest patientClinicalRecord) {
+        // Implementation for updating a patient clinical record
+        return patientClinicalRecordRepositoryPort.update(patientClinicalRecord);
     }
 
     @Override
     public void delete(UUID id) {
-        userRepositoryPort.deleteById(id);
+        // Implementation for deleting a patient clinical record
+        patientClinicalRecordRepositoryPort.delete(id);
     }
 
     @Override
-    public User findById(UUID id) {
-        return userRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    public PatientClinicalRecord findById(UUID id) {
+        // Implementation for finding a patient clinical record by ID
+        return patientClinicalRecordRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("Patient Clinical Record not found"));
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepositoryPort.findAll();
+    public List<PatientClinicalRecord> findAll() {
+        // Implementation for finding all patient clinical records
+        return patientClinicalRecordRepositoryPort.findAll();
     }
-
-    @Override
-    public User findByEmail(String email) {
-        return userRepositoryPort.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
-    }
-
 }

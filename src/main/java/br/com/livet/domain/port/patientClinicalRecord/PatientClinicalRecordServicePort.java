@@ -2,7 +2,6 @@ package br.com.livet.domain.port.patientClinicalRecord;
 
 
 import br.com.livet.domain.model.patientClinicalRecord.CreatePatientClinicalRecordRequest;
-import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.infrastructure.entity.PatientClinicalRecord;
 import org.springframework.stereotype.Service;
 

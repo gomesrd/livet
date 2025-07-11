@@ -11,9 +11,9 @@ import java.util.UUID;
 
 @Service
 public interface PatientClinicalRecordRepositoryPort {
-    PatientClinicalRecord save(CreatePatientClinicalRecordRequest createPatientClinicalRecordRequest, String externalId);
+    PatientClinicalRecord save(CreatePatientClinicalRecordRequest createPatientClinicalRecordRequest);
     PatientClinicalRecord update(CreatePatientClinicalRecordRequest createPatientClinicalRecordRequest);
-    void deleteById(UUID id);
+    void delete(UUID id);
     Optional<PatientClinicalRecord> findById(UUID id);
     List<PatientClinicalRecord> findAll();
 }
