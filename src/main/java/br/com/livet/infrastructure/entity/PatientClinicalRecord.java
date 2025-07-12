@@ -23,6 +23,7 @@ import static br.com.livet.infrastructure.entity.schema.Schema.LIVET;
 public class PatientClinicalRecord {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "patient_id", nullable = false)
@@ -54,8 +55,8 @@ public class PatientClinicalRecord {
 
     @PrePersist
     protected void onCreate() {
-        createdAt = Instant.now();
-        updatedAt = Instant.now();
+        this.createdAt = Instant.now();
+        this.deleted = false;
     }
 
     @PreUpdate

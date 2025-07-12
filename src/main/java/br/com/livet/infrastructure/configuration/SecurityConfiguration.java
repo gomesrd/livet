@@ -70,7 +70,8 @@ public class SecurityConfiguration {
                                 "/auth/login",
                                 "/auth/register",
                                 "/health",
-                                "/actuator/health"
+                                "/actuator/health",
+                                "/home"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
                         .anyRequest().authenticated()

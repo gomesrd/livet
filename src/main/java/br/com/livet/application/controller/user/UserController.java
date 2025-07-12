@@ -24,33 +24,33 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserServicePort userService;
+    private final UserServicePort userServicePort;
     private final OpenAiService openAiService;
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody CreateUserRequest user) {
-        return ResponseEntity.ok(userService.create(user));
+        return ResponseEntity.ok(userServicePort.create(user));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable UUID id, @RequestBody User user) {
-        return ResponseEntity.ok(userService.update(id, user));
+        return ResponseEntity.ok(userServicePort.update(id, user));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        userService.delete(id);
+        userServicePort.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable UUID id) {
-        return ResponseEntity.ok(userService.findById(id));
+        return ResponseEntity.ok(userServicePort.findByIdOrElseThrow(id));
     }
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.ok(userService.findAll());
+        return ResponseEntity.ok(userServicePort.findAll());
     }
 
     @GetMapping("/search")

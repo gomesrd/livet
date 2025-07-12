@@ -26,26 +26,22 @@ public class UserService implements UserServicePort {
 
     @Override
     public User update(UUID id, User user) {
-        User existing = userRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-
-        existing.setFirstName(user.getFirstName());
-
-        return userRepositoryPort.update(
-                CreateUserRequest.builder()
-                        .firstName(existing.getFirstName())
-                        .lastName(existing.getLastName())
-                        .build()
-        );
+        User userEntity = userRepositoryPort.findByIdOrElseThrow(id);
+        userEntity.setFirstName(user.getFirstName());
+        userEntity.setLastName(user.getLastName());
+        return userRepositoryPort.update(userEntity);
     }
 
     @Override
     public void delete(UUID id) {
-        userRepositoryPort.deleteById(id);
+        User userEntity = userRepositoryPort.findByIdOrElseThrow(id);
+        userEntity.setDeleted(true);
+        userRepositoryPort.update(userEntity);
     }
 
     @Override
-    public User findById(UUID id) {
-        return userRepositoryPort.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    public User findByIdOrElseThrow(UUID id) {
+        return userRepositoryPort.findByIdOrElseThrow(id);
     }
 
     @Override

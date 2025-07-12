@@ -61,7 +61,7 @@ public class User {
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
         this.deleted = false;
-        this.role = "ADMIN";
+        this.role = "PATIENT";
     }
 
     @PreUpdate

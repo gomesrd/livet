@@ -16,7 +16,7 @@ public interface UserServicePort {
 
     void delete(UUID id);
 
-    User findById(UUID id);
+    User findByIdOrElseThrow(UUID id);
 
     List<User> findAll();
 

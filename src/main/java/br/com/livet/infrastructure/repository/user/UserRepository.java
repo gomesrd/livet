@@ -32,13 +32,8 @@ public class UserRepository implements UserRepositoryPort {
 
 
     @Override
-    public User update(CreateUserRequest user) {
-        return jpaUserRepository.save(
-                User.builder()
-                        .firstName(user.getFirstName())
-                        .lastName(user.getLastName())
-                        .build()
-        );
+    public User update(User user) {
+        return jpaUserRepository.save(user);
     }
 
     @Override
@@ -52,12 +47,17 @@ public class UserRepository implements UserRepositoryPort {
     }
 
     @Override
+    public User findByIdOrElseThrow(UUID id) {
+        return jpaUserRepository.findByIdAndDeletedFalse(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    @Override
     public List<User> findAll() {
-        return jpaUserRepository.findAll();
+        return jpaUserRepository.findAllByDeletedFalse();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return jpaUserRepository.findByEmail(email);
+        return jpaUserRepository.findByEmailAndDeletedFalse(email);
     }
 }
