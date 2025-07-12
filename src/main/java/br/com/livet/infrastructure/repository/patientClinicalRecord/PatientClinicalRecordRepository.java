@@ -3,7 +3,6 @@ package br.com.livet.infrastructure.repository.patientClinicalRecord;
 import br.com.livet.domain.model.patientClinicalRecord.CreatePatientClinicalRecordRequest;
 import br.com.livet.domain.port.patientClinicalRecord.PatientClinicalRecordRepositoryPort;
 import br.com.livet.infrastructure.entity.PatientClinicalRecord;
-import br.com.livet.infrastructure.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

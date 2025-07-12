@@ -1,20 +1,13 @@
 package br.com.livet.application.controller.user;
 
 import br.com.livet.domain.model.user.CreateUserRequest;
+import br.com.livet.domain.port.user.UserServicePort;
 import br.com.livet.domain.service.openAi.OpenAiService;
+import br.com.livet.infrastructure.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import br.com.livet.domain.port.user.UserServicePort;
-import br.com.livet.infrastructure.entity.User;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;

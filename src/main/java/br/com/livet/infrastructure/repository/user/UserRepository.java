@@ -3,13 +3,11 @@ package br.com.livet.infrastructure.repository.user;
 import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.user.UserRepositoryPort;
 import br.com.livet.infrastructure.entity.User;
-
-import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component

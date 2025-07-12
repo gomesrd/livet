@@ -1,18 +1,7 @@
 package br.com.livet.infrastructure.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.GenerationType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -42,10 +31,10 @@ public class User {
     @Column(name="role", nullable = false, length = 50)
     private String role;
 
-    @Column(name="external_id", nullable = false, unique = true, length = 255)
+    @Column(name="external_id", nullable = false, unique = true)
     private String externalId;
 
-    @Column(name = "email", nullable = false, unique = true, length = 255)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "created_at", nullable = false, updatable = false)

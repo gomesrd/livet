@@ -6,7 +6,10 @@ import br.com.livet.infrastructure.entity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseToken;
 import com.google.firebase.auth.UserRecord;
+import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -17,10 +20,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 @Configuration
@@ -30,12 +29,10 @@ public class FirebaseFilter extends OncePerRequestFilter {
 
     private final FirebaseAuth firebaseAuth;
     private final UserService userService;
-    private final SecurityUtils securityUtils;
 
-    public FirebaseFilter(FirebaseAuth firebaseAuth, UserService userService, SecurityUtils securityUtils) {
+    public FirebaseFilter(FirebaseAuth firebaseAuth, UserService userService) {
         this.firebaseAuth = firebaseAuth;
         this.userService = userService;
-        this.securityUtils = securityUtils;
     }
 
 

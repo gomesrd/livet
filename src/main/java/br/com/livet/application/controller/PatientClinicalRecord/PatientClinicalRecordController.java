@@ -1,14 +1,9 @@
 package br.com.livet.application.controller.PatientClinicalRecord;
 
 import br.com.livet.domain.model.patientClinicalRecord.CreatePatientClinicalRecordRequest;
-import br.com.livet.domain.model.user.CreateUserRequest;
 import br.com.livet.domain.port.patientClinicalRecord.PatientClinicalRecordServicePort;
-import br.com.livet.domain.port.user.UserServicePort;
-import br.com.livet.domain.service.openAi.OpenAiService;
 import br.com.livet.infrastructure.entity.PatientClinicalRecord;
-import br.com.livet.infrastructure.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

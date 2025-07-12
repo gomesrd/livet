@@ -1,9 +1,9 @@
 package br.com.livet.domain.model.patientClinicalRecord.recordData;
 
-import java.time.LocalDate;
-
 import lombok.Builder;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Builder
 @Data

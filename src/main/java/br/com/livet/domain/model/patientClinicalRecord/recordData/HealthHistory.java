@@ -1,9 +1,9 @@
 package br.com.livet.domain.model.patientClinicalRecord.recordData;
 
-import java.util.List;
-
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 @Builder
 @Data
